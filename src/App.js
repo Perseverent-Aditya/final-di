@@ -838,7 +838,10 @@ const DICalculator = () => {
     <div className="container">
       <div className="background-animation"></div>
       <div className="header">
-        <img src={frontierLogo} alt="Frontier Logo" className="logo" />
+      <div className="logo-container">
+    <img src={frontierLogo} alt="Frontier Alloy Steels Limited" />
+</div>
+        {/* <img src={frontierLogo} alt="Frontier Logo" className="logo" /> */}
         <h1>Di Calculator <span>(Non Boron Steel)</span></h1>
 
       </div>

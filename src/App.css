@@ -353,4 +353,21 @@ input::placeholder {
   font-weight: normal;
 }
 
+.logo-container {
+  display: flex;
+  justify-content: center;  /* Center horizontally */
+  align-items: center;      /* Center vertically */
+  height: auto;             /* Adjust height to fit content */
+  padding: 20px 0;  
+     /* Add space above & below */
+  margin-left: 20px;
+}
+
+.logo-container img {
+  width: 100%;      /* Adjust size (Increase width to make it bigger) */
+  height: auto;      /* Maintain aspect ratio */
+  max-width: 100%;
+     /* Ensure responsiveness */
+}
+
 
