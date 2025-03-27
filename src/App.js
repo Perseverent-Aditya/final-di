@@ -796,33 +796,36 @@ const DICalculator = () => {
 
   const calculateDI = () => {
     let di = 1;
-    let hasInvalidValue = false;
-  
-    Object.entries(multiplyingFactors).forEach(([element]) => {
-      const value = parseFloat(concentrations[element]);
-  
-      if (!value && value !== 0) {
-        di *= 1; // If value is empty, assume multiplying factor as 1
-      } else {
-        const roundedValue = value.toFixed(2); // Ensure proper lookup
-        const factorTable = multiplyingFactors[element];
-        const factor = factorTable[roundedValue] ?? null;
-  
-        if (factor === null) {
-          hasInvalidValue = true;
-        } else {
-          di *= parseFloat(factor);
+
+    Object.entries(multiplyingFactors).forEach(([element, factorTable]) => {
+        let value = parseFloat(concentrations[element]);
+
+        // If field is empty, assume multiplying factor as 1
+        if (isNaN(value)) {
+            di *= 1;
+            return;
         }
-      }
+
+        // If value < 0.01, use factor for 0.01
+        if (value < 0.01) {
+            value = 0.01;
+        }
+
+        // Convert factorTable keys to numbers and sort
+        const availableKeys = Object.keys(factorTable).map(parseFloat).sort((a, b) => a - b);
+
+        // If exact value exists, use it directly
+        if (factorTable[value.toFixed(2)] !== undefined) {
+            di *= parseFloat(factorTable[value.toFixed(2)]);
+            return;
+        }
+
+        // If exact value doesn't exist, find closest lower key
+        const closestKey = availableKeys.filter(key => key <= value).pop() || availableKeys[0];
+
+        di *= parseFloat(factorTable[closestKey.toFixed(2)]);
     });
-  
-    if (hasInvalidValue) {
-      setShowDialog(true);
-      setConcentrations({});
-      setDiValue(null);
-      return;
-    }
-  
+
     setDiValue(di.toFixed(3));
   };
 
