@@ -797,20 +797,17 @@ const DICalculator = () => {
   const calculateDI = () => {
     let di = 1;
     let hasInvalidValue = false;
-    let hasEmptyFields = false;
-    let newErrors = {};
-
+  
     Object.entries(multiplyingFactors).forEach(([element]) => {
       const value = parseFloat(concentrations[element]);
-
+  
       if (!value && value !== 0) {
-        newErrors[element] = "Please enter this field before submitting.";
-        hasEmptyFields = true;
+        di *= 1; // If value is empty, assume multiplying factor as 1
       } else {
         const roundedValue = value.toFixed(2); // Ensure proper lookup
         const factorTable = multiplyingFactors[element];
         const factor = factorTable[roundedValue] ?? null;
-
+  
         if (factor === null) {
           hasInvalidValue = true;
         } else {
@@ -818,19 +815,14 @@ const DICalculator = () => {
         }
       }
     });
-
-    if (hasEmptyFields) {
-      setErrors(newErrors);
-      return;
-    }
-
+  
     if (hasInvalidValue) {
       setShowDialog(true);
       setConcentrations({});
       setDiValue(null);
       return;
     }
-
+  
     setDiValue(di.toFixed(3));
   };
 
