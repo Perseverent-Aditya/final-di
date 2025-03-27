@@ -1,38 +1,356 @@
-.App {
+body {
+  background: url('./assets/wave.svg') no-repeat center center fixed, linear-gradient(135deg, #1f1c2c, #928dab);
+  background-size: cover;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  width: 90%;
+  max-width: 600px;
   text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 80px;
+  height: auto;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.25);
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #0056b3;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  backdrop-filter: blur(6px);
+  transition: border 0.3s;
 }
 
-@keyframes App-logo-spin {
+input:hover, input:focus {
+  border-color: #007aff;
+  outline: none;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.error-text {
+  color: red;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.calculate-btn {
+  background: #0056b3;
+  color: white;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.calculate-btn:hover {
+  background: #003f7f;
+  transform: scale(1.08);
+}
+
+.result {
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 15px;
+  color: white;
+}
+
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.dialog-box {
+  background: rgba(255, 255, 255, 0.25);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
   }
 }
+
+
+.header h1 {
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+  width: 100px;
+  height: auto;
+  filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.5));
+}
+
+/* Ensure scrollbar is visible */
+body {
+  overflow-y: auto; /* Enables vertical scrolling */
+}
+
+/* Make the input container wider */
+.container {
+  width: 95%;
+  max-width: 750px; /* Increased max-width */
+}
+
+/* Ensure the card is wider */
+.card {
+  width: 100%; /* Take full width of container */
+  max-width: 700px; /* Increased width */
+}
+
+/* Improve heading visibility */
+.header h1 {
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Improve logo visibility */
+.logo {
+  width: 100px;
+  height: auto;
+  filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.5));
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center; /* Center aligns input fields */
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers text and inputs */
+  width: 100%;
+}
+
+input {
+  width: 90%; /* Ensures uniform margin on both sides */
+  max-width: 400px; /* Restricts input width */
+  text-align: center; /* Centers input text */
+}
+
+.header h1 {
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.header h1 span {
+  display: block;
+  font-size: 20px;
+  font-weight: normal;
+  margin-top: 5px;
+}
+
+.container {
+  width: 95%;
+  max-width: 700px; /* Increased for better spacing */
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.25);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  width: 100%; /* Ensure it utilizes full width */
+}
+
+.input-field {
+  width: 100%; /* Ensure the whole section is used */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the inputs properly */
+}
+
+input {
+  width: 90%; /* Ensures they are evenly spaced inside the card */
+  min-width: 250px; /* Prevents shrinking too much */
+  padding: 12px;
+  border: 2px solid #0056b3;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  backdrop-filter: blur(6px);
+  transition: border 0.3s;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px; /* Increase spacing */
+}
+
+.card {
+  max-height: 80vh; /* Ensures it doesn't exceed the screen height */
+  overflow-y: auto; /* Adds a scrollbar if needed */
+}
+
+.logo {
+  width: 100px; /* Increase size */
+  height: auto;
+  margin-bottom: 10px; /* Add spacing below */
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.25);
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  max-height: 75vh; /* Prevents it from taking too much space */
+  overflow-y: auto; /* Adds scrollbar if needed */
+}
+
+.logo {
+  width: 120px; /* Increase size */
+  height: auto;
+  margin-bottom: 10px; /* Ensure space below */
+  display: block; /* Ensure it doesn't collapse */
+}
+
+.container {
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+  padding-top: 40px; /* Added padding to push content down */
+}
+
+body {
+  overflow-y: auto; /* Allow vertical scrolling */
+  overscroll-behavior: contain; /* Prevent scrolling issues */
+}
+.container {
+  max-height: 90vh; /* Prevents extreme height issues */
+  overflow-y: auto; /* Enables scrolling inside the container */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+.container {
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+  overflow: visible; /* Ensure it doesn’t cut off */
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.25);
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  min-height: fit-content; /* Prevents cutting */
+  overflow: visible; /* Allows full visibility */
+}
+
+
+body {
+  height: auto;
+  min-height: 100vh;
+  overflow-y: auto;
+  padding-bottom: 20px;
+}
+
+input {
+  background-color: white !important; /* Ensures white background */
+  color: black !important; /* Ensures black text */
+  font-weight: bold !important; /* Makes text bold */
+  border: 2px solid rgba(0, 0, 0, 0.3); /* Optional: adds a subtle border */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+input::placeholder {
+  color: gray !important; /* Keeps placeholder visible */
+  font-weight: normal;
+}
+
+
